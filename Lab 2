@@ -1,0 +1,25 @@
+#TASK 1
+height <- readline(prompt = "Input height: ")
+weight <- readline(prompt = "Input weight: ")
+height <- as.numeric(height)
+weight <- as.numeric(weight)
+bmi <- weight/(height^2)
+
+cat("UNDERWEIGHT: ", bmi<=18.4)
+cat("NORMAL: ", bmi>=18.5 & bmi<=24.9)
+cat("OVERWEIGHT: ", bmi>=25.0 & bmi<=39.9)
+cat("OBESE: ", bmi>=40.0)
+
+#TASK 2
+sentence1 <- readline(prompt = "Enter String 1: ")
+sentence2 <- readline(prompt = "Enter String 2: ")
+cat("This program compares 2 inputs. Both inputs are similar: ", sentence1 == sentence2)
+
+#TASK 3
+name <- readline(prompt = "Enter name: ")
+phnum <- readline(prompt = "Enter phone number: (10 digits)")
+name <- toupper(name)
+subphnum1 <- substring(phnum, 1,3)
+subphnum2 <- substring(phnum, 8,10)
+
+cat("Hi", name, ". A verification code has been sent to", subphnum1, "-XXXX- ", subphnum2)
