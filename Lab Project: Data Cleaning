@@ -1,0 +1,52 @@
+# LOAD LIBRARIES
+library(readxl)
+library(dplyr)
+library(janitor)
+library(stringr)
+library(lubridate)
+
+# READ FILE
+file_path <- "/content/sample_data/uncleaned bike sales data.xlsx"
+raw_data <- read_excel(file_path)
+
+# INITIAL CHECK
+glimpse(raw_data)
+
+# CLEAN COLUMN NAMES
+clean_data <- raw_data %>%
+  clean_names()   # makes names lowercase + snake_case
+
+# REMOVE FULLY EMPTY ROWS
+clean_data <- clean_data %>%
+  filter(!if_all(everything(), is.na))
+
+# REMOVE DUPLICATES
+clean_data <- clean_data %>%
+  distinct()
+
+# TRIM WHITESPACE (CHARACTER COLUMNS)
+clean_data <- clean_data %>%
+  mutate(across(where(is.character), str_trim))
+
+
+# HANDLE DATE COLUMNS
+clean_data <- clean_data %>%
+  mutate(across(contains("date"),
+                ~ as.Date(.x, origin = "1899-12-30")))
+
+# CONVERT NUMERIC COLUMNS
+# (Remove commas before converting)
+clean_data <- clean_data %>%
+  mutate(across(where(is.character),
+                ~ ifelse(str_detect(.x, "^[0-9,\\.]+$"),
+                         as.numeric(str_replace_all(.x, ",", "")),
+                         .x)))
+
+# CHECK
+glimpse(clean_data)
+summary(clean_data)
+# Export
+write.csv(clean_data, "cleaned_bike_sales_data.csv", row.names = FALSE)
+
+# View cleaned data
+clean_data
