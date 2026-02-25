@@ -1,0 +1,69 @@
+#TASK 1
+# Input vector of exam scores
+scores <- c(33, 24, 54, 94, 16, 89, 60, 6, 77, 61, 13, 44, 26, 24, 73, 73, 90, 39, 90, 54)
+
+# Function to assign grades
+get_grade <- function(score) {
+  if (score >= 90) return("A")
+  else if (score >= 80) return("B")
+  else if (score >= 70) return("C")
+  else if (score >= 60) return("D")
+  else if (score >= 50) return("E")
+  else return("F")
+}
+
+grades <- sapply(scores, get_grade)
+
+# Count number of students per grade
+grade_table <- table(grades)
+grade_table
+
+# Check pass/fail (>49)
+pass_status <- scores > 49
+pass_status
+
+#TASK 2
+# Student names and scores
+students <- c("Robert", "Hemsworth", "Scarlett", "Evans", "Pratt", "Larson", "Holland", "Paul", "Simu", "Renner")
+exam_scores <- c(59, 71, 83, 68, 65, 57, 62, 92, 92, 59)
+
+# Create a named list
+student_record <- list(Name=students, Score=exam_scores)
+student_record
+
+# Highest, lowest, average
+highest_score <- max(student_record$Score)
+lowest_score <- min(student_record$Score)
+average_score <- mean(student_record$Score)
+
+# Students with highest and lowest scores
+student_highest <- students[which(student_record$Score == highest_score)]
+student_lowest <- students[which(student_record$Score == lowest_score)]
+
+cat("Highest score:", highest_score, "\n")
+cat("Lowest score:", lowest_score, "\n")
+cat("Average score:", round(average_score,1), "\n")
+cat("Student with highest score:", paste(student_highest, collapse=", "), "\n")
+cat("Student with lowest score:", paste(student_lowest, collapse=", "), "\n")
+
+#TASK 3
+# Exam scores for Chemistry and Physics
+chemistry <- c(59, 71, 83, 68, 65, 57, 62, 92, 92, 59)
+physics <- c(89, 86, 65, 52, 60, 67, 40, 77, 90, 61)
+
+# Append to existing student_record
+student_record$Chemistry <- chemistry
+student_record$Physics <- physics
+
+# Count students failing (<=49)
+fail_chem <- sum(student_record$Chemistry <= 49)
+fail_phys <- sum(student_record$Physics <= 49)
+
+# Students with highest score in Chemistry & Physics
+best_chem <- students[which(student_record$Chemistry == max(student_record$Chemistry))]
+best_phys <- students[which(student_record$Physics == max(student_record$Physics))]
+
+cat("Number of students failing Chemistry:", fail_chem, "\n")
+cat("Number of students failing Physics:", fail_phys, "\n")
+cat("Best score in Chemistry:", paste(best_chem, collapse=", "), "\n")
+cat("Best score in Physics:", paste(best_phys, collapse=", "), "\n")
