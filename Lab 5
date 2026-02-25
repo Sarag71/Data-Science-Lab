@@ -1,0 +1,40 @@
+# TASK 1. Check whether a year is a leap year or not
+check_leap_year <- function(year) {
+  if ((year %% 4 == 0 && year %% 100 != 0) || (year %% 400 == 0)) {
+    cat(year, "is a leap year.\n")
+  } else {
+    cat(year, "is not a leap year.\n")
+  }
+}
+
+year <- as.integer(readline("Input year: "))
+check_leap_year(year)
+
+
+# TASK 2. Display the cube of the number up to a given integer
+display_cubes <- function(n) {
+  for (i in 1:n) {
+    cat("Number is:", i, "and cube of the", i, "is:", i^3, "\n")
+  }
+}
+
+
+num <- as.integer(readline("Input an integer: "))
+display_cubes(num)
+
+
+# TASK 3. Check Armstrong number of n digits
+check_armstrong <- function(number) {
+  digits <- as.numeric(unlist(strsplit(as.character(number), "")))
+  n <- length(digits)
+  sum_of_powers <- sum(digits^n)
+  
+  if (sum_of_powers == number) {
+    cat(number, "is an Armstrong number.\n")
+  } else {
+    cat(number, "is not an Armstrong number.\n")
+  }
+}
+
+armstrong_num <- as.integer(readline("Check whether an n digits number is Armstrong or not:\nInput an integer: "))
+check_armstrong(armstrong_num)
