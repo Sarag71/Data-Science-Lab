@@ -1,0 +1,58 @@
+# TASK 1
+age <- c(55,57,56,52,51,59,58,53,59,55,60,60,60,60,52,55,56,51,60,
+         52,54,56,52,57,54,56,58,53,53,50,55,51,57,60,57,55,51,50,57,58)
+
+# Convert to factor and check levels
+age_factor <- factor(age)
+levels(age_factor)  # unique ages
+
+# Divide into 5 ranges
+age_ranges <- cut(age, breaks=c(50,52,54,56,58,60), right=TRUE)
+table(age_ranges)
+
+# Insight
+cat("From the table, we can see how many staff fall into each age range.\n")
+
+#TASK 2
+V1 <- c(2,3,1,5,4,6,8,7,9)
+
+# Create 3x3 Matrix-1
+Matrix1 <- matrix(V1, nrow=3, ncol=3, byrow=TRUE)
+colnames(Matrix1) <- c("C1","C2","C3")
+rownames(Matrix1) <- c("R1","R2","R3")
+Matrix1
+
+# Transpose to create Matrix-2
+Matrix2 <- t(Matrix1)
+colnames(Matrix2) <- c("C1","C2","C3")
+rownames(Matrix2) <- c("R1","R2","R3")
+Matrix2
+
+# Matrix operations
+cat("Addition:\n")
+Matrix1 + Matrix2
+
+cat("Subtraction:\n")
+Matrix1 - Matrix2
+
+cat("Multiplication (element-wise):\n")
+Matrix1 * Matrix2
+
+cat("Division (element-wise):\n")
+Matrix1 / Matrix2
+
+#TASK 3
+# Array1: 2 rows, 4 cols, 3 tables
+Array1 <- array(1:24, dim=c(2,4,3))
+Array1
+
+# Array2: 3 rows, 2 cols, 5 tables
+Array2 <- array(25:54, dim=c(3,2,5))
+Array2
+
+# Print the second row of the second matrix of Array1
+cat("The second row of the second matrix of Array1:\n")
+Array1[2,,2]
+
+cat("The element in the 3rd row and 3rd column of the first matrix of Array2:\n")
+Array2[3,2,1]
